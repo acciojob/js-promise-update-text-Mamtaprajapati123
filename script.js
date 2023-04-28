@@ -1,19 +1,20 @@
-// Get the output element by ID
-const outputElement = document.getElementById("output");
+function updateText() {
+  // Get the output element by ID
+  const outputEl = document.getElementById('output');
 
-// Define a function that returns a promise
-function sayHello() {
-  return new Promise((resolve, reject) => {
-    // Use setTimeout to simulate an async operation that takes 1 second
+  // Create a promise that resolves with "Hello, world!" after 1 second
+  const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("Hello, world!"); // Resolve the promise with the string "Hello, world!"
+      resolve('Hello, world!');
     }, 1000);
+  });
+
+  // Update the text of the output element after the promise resolves
+  myPromise.then((result) => {
+    outputEl.textContent = result;
   });
 }
 
-// Call the sayHello function and update the output element with the result
-sayHello().then((result) => {
-  outputElement.innerText = result;
-}).catch((error) => {
-  console.error(error);
-});
+// Add an event listener to the button to trigger the updateText function
+const myButton = document.getElementById('myButton');
+myButton.addEventListener('click', updateText);
